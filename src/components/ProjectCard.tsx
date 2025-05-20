@@ -1,12 +1,14 @@
-
-import React, { useState } from 'react';
-import { cn } from '@/lib/utils';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   features: string[];
   techStack: string[];
+  githubLink: string;
+  liveDemoLink: string;
   color?: 'blue' | 'purple' | 'green';
   className?: string;
 }
@@ -16,6 +18,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   features,
   techStack,
+  githubLink,
+  liveDemoLink,
   color = 'blue',
   className,
 }) => {
@@ -33,44 +37,65 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     green: 'text-glow-green',
   };
 
+  const AnimatedButton = ({
+    href,
+    icon,
+    label,
+  }: {
+    href: string;
+    icon: React.ReactNode;
+    label: string;
+  }) => (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      whileHover={{ y: -3, scale: 1.04 }}
+      whileTap={{ scale: 0.98 }}
+      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white font-medium shadow-md hover:shadow-xl active:shadow-inner transition-all duration-200"
+    >
+      {icon}
+      <span>{label}</span>
+    </motion.a>
+  );
+
   return (
     <div
-      className={cn(
-        'glass-card rounded-lg p-6 transition-all duration-300',
-        neonBorder[color],
-        isHovered && 'transform -translate-y-2',
-        className
-      )}
+      className={`rounded-xl border p-4 shadow-lg transition-transform duration-300 hover:scale-[1.02] ${neonBorder[color]} ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <h3 className={cn('text-xl font-bold mb-3', glowText[color])}>{title}</h3>
-      <p className="text-gray-300 mb-4">{description}</p>
-      
-      <div className="mb-4">
-        <h4 className="font-semibold text-white mb-2">Features</h4>
-        <ul className="text-sm text-gray-300 list-disc pl-5 space-y-1">
-          {features.map((feature, index) => (
-            <li key={index}>{feature}</li>
-          ))}
-        </ul>
+      <h3 className={`text-xl font-bold mb-2 ${glowText[color]}`}>{title}</h3>
+      <p className="text-gray-400 mb-3">{description}</p>
+
+      <ul className="list-disc list-inside text-sm text-gray-300 mb-3">
+        {features.map((feature, index) => (
+          <li key={index}>{feature}</li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-2 mb-4">
+        {techStack.map((tech, index) => (
+          <span
+            key={index}
+            className="bg-gray-800 text-white px-2 py-1 rounded text-xs"
+          >
+            {tech}
+          </span>
+        ))}
       </div>
-      
-      <div className="pt-3 border-t border-gray-700">
-        <h4 className="font-semibold text-white mb-2">Tech Stack</h4>
-        <div className="flex flex-wrap gap-2">
-          {techStack.map((tech, index) => (
-            <span
-              key={index}
-              className={cn(
-                'px-2 py-1 text-xs rounded-full',
-                `bg-${color === 'blue' ? 'neon-blue' : color === 'purple' ? 'neon-purple' : 'neon-green'}/10 text-${color === 'blue' ? 'neon-blue' : color === 'purple' ? 'neon-purple' : 'neon-green'}`
-              )}
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+
+      <div className="flex gap-4">
+        <AnimatedButton
+          href={liveDemoLink}
+          icon={<FaExternalLinkAlt />}
+          label="Live Demo"
+        />
+        <AnimatedButton
+          href={githubLink}
+          icon={<FaGithub />}
+          label="GitHub"
+        />
       </div>
     </div>
   );
