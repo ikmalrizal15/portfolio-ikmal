@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ArrowDown,
-  Download,
   Mail,
   Phone,
   Briefcase,
@@ -52,18 +51,28 @@ const Index: React.FC = () => {
 
   const certificationData = [
     {
-      title: "IPv4 Network Admin Training",
-      issuer: "Network Institute",
+      title: "CCNA: Introduction to Networks",
+      issuer: "Cisco Networking Academy",
       date: "2022",
-      description: "Comprehensive training covering IP routing protocols, firewall configuration, and network administration practices. Gained hands-on experience with enterprise-level networking equipment.",
+      description:
+        "Fundamental training in networking concepts including protocols, network devices, and the basics of IP addressing and Ethernet. Built a strong foundation for network configuration and troubleshooting.",
       color: "blue"
     },
     {
-      title: "Professional Development Seminar",
-      issuer: "Career Development Center",
+      title: "CCNA: Switching, Routing, and Wireless Essentials",
+      issuer: "Cisco Networking Academy",
       date: "2023",
-      description: "Intensive professional development program focusing on effective communication, teamwork strategies, and time management techniques for the workplace.",
+      description:
+        "Focused on switching technologies, routing protocols, VLANs, and wireless LAN configuration. Gained practical experience in network design, implementation, and troubleshooting.",
       color: "purple"
+    },
+    {
+      title: "CCNA: Enterprise Networking, Security, and Automation",
+      issuer: "Cisco Networking Academy",
+      date: "2024",
+      description:
+        "Advanced topics in enterprise networking architecture, security protocols, VPNs, and network automation. Hands-on labs in securing networks and configuring enterprise-grade equipment.",
+      color: "green"
     }
   ];
 
@@ -71,12 +80,10 @@ const Index: React.FC = () => {
     <div className="min-h-screen flex flex-col">
       <NavBar />
 
-      {/* ✅ Hero Section with Centered Profile Picture */}
       <section id="home" className="relative h-screen flex items-center justify-center text-center px-4">
         <ParticlesBackground className="absolute inset-0" />
 
         <div className="z-10 max-w-3xl">
-          {/* Profile Image */}
           <motion.img
             src="/profile.png"
             alt="Ikmal Rizal"
@@ -138,7 +145,6 @@ const Index: React.FC = () => {
         </div>
       </section>
 
-      {/* ✅ Continue other sections as is */}
       <Section id="about" title="About Me" subtitle="Get to know me better" neonColor="purple">
         <div className="grid md:grid-cols-2 gap-8">
           <div className="glass-card p-6 rounded-lg neon-border-purple">
@@ -176,26 +182,29 @@ const Index: React.FC = () => {
       </Section>
 
       <Section id="skills" title="Skills" subtitle="Technical proficiencies and competencies" neonColor="green">
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h3 className="text-xl font-semibold mb-6 text-glow-blue">Programming</h3>
-            <SkillBar name="C" level={85} color="blue" />
-            <SkillBar name="Java" level={80} color="blue" />
-            <SkillBar name="HTML" level={75} color="blue" />
-            <SkillBar name="CSS" level={70} color="blue" />
-            <SkillBar name="ReactJS" level={65} color="blue" />
-          </div>
+  <div className="grid md:grid-cols-2 gap-12">
+    <div>
+      <h3 className="text-xl font-semibold mb-6 text-glow-blue">Programming</h3>
+      <SkillBar name="C" icon="C.png" />
+      <SkillBar name="Java" icon="Java.png" />
+      <SkillBar name="HTML" icon="HTML.png" />
+      <SkillBar name="CSS" icon="CSS.png" />
+      <SkillBar name="PHP" icon="PHP.png" />
+      <SkillBar name="JavaScript" icon="JavaScript.png" />
+    </div>
 
-          <div>
-            <h3 className="text-xl font-semibold mb-6 text-glow-purple">Networking</h3>
-            <SkillBar name="Subnetting" level={90} color="purple" />
-            <SkillBar name="IP Routing" level={85} color="purple" />
-            <SkillBar name="Firewall & IDS" level={80} color="purple" />
-            <SkillBar name="Cisco" level={85} color="purple" />
-            <SkillBar name="IPv4 Admin" level={90} color="purple" />
-          </div>
-        </div>
-      </Section>
+    <div>
+      <h3 className="text-xl font-semibold mb-6 text-glow-purple">Tools & Framework</h3>
+      <SkillBar name="React" icon="React.png" />
+      <SkillBar name="TailwindCSS" icon="TailwindCSS.png" />
+      <SkillBar name="Python" icon="Python.webp" />
+      <SkillBar name="MySQL" icon="MySQL.png" />
+      <SkillBar name="Firebase" icon="Firebase.svg" />
+      <SkillBar name="TypeScript" icon="TypeScript.png" />
+    </div>
+  </div>
+</Section>
+
 
       <Section id="experience" title="Experience" subtitle="Professional work history" neonColor="blue" className="bg-dark-light/30">
         <Timeline items={experienceData} />
